@@ -1,10 +1,9 @@
 const router = require('express').Router();
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const user = require('../controllers/user.controller');
+const signup = require('../controllers/user-signup.controller');
+const login = require('../controllers/user-login.controller');
 
-
-router.post('/signup', user)
+router.post('/signup', signup)
+router.post('/login', login)
 
 
 
