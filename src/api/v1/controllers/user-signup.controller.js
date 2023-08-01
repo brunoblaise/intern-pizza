@@ -28,7 +28,6 @@ module.exports = async function (req, res) {
 		const token = jwtGenerator(newUser.id, newUser.role);
 		res.status(201).json({ token });
 	} catch (error) {
-		console.error(error.message);
-		res.status(500).send('Server error');
+		
 	}
 };

@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(morgan('dev'));
 
-app.use('/', require('./app.js'));
+app.use('/api/v1', require('./app.js'));
 
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`);
