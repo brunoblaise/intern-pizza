@@ -10,7 +10,7 @@ app.use(express.json());
 db.authenticate()
 	.then(() => console.log('Database connected...'))
 	.catch((err) => console.log('Error: ' + err));
-db.sync({ force: true });
+//db.sync({ force: true });
 console.log('All models were synchronized successfully.');
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());

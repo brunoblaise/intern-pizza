@@ -5,13 +5,11 @@ function jwtGenerator(id, role) {
 	const payload = {
 		user: {
 			id,
-            role,
+			role,
 		},
 	};
 
-	return jwt.sign(payload, process.env.JWT, { expiresIn: '2h' });
+	return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '2h' });
 }
-
-
 
 module.exports = jwtGenerator;

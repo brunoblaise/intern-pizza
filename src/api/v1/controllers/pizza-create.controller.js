@@ -1,8 +1,9 @@
-const auth = require('../middleware/auth');
 const Pizza = require('../../../db/models/pizza.model');
 module.exports = async function (req, res) {
 	try {
+		
 		const role = req.user.role;
+
 		if (role !== 'admin') {
 			return res.status(401).json({ msg: 'Not authorized' });
 		}
