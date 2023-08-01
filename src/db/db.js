@@ -6,4 +6,5 @@ const db = new Sequelize(process.env.DB, process.env.USER, process.env.PASSWORD,
 });
 
 
+
 module.exports = db;

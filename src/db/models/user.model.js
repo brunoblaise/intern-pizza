@@ -9,7 +9,7 @@ const User = db.define('user', {
 	},
 	role: { type: DataTypes.STRING, allowNull: false, defaultValue: 'user' },
 	name: { type: DataTypes.STRING, allowNull: false },
-	email: { type: DataTypes.STRING, allowNull: false },
+	email: { type: DataTypes.STRING, allowNull: false, unique: true },
 	password: { type: DataTypes.STRING, allowNull: false },
 });
 

@@ -24,7 +24,7 @@ async function sendMail(email, subject, text) {
 				accessToken: accessToken,
 			},
 		});
-
+	
 		const mailOptions = {
 			from: process.env.USER,
 			to: email,
@@ -39,7 +39,7 @@ async function sendMail(email, subject, text) {
 	}
 }
 sendMail()
-	.then((result) => console.log('Email sent...', result))
+	.then((result) => console.log('Email sent...'))
 	.catch((error) => console.log(error.message));
 
 module.exports = sendMail;

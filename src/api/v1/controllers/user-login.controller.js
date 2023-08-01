@@ -3,9 +3,9 @@ const jwtGenerator = require('../../../helpers/jwtGenerator');
 
 const User = require('../../../db/models/user.model');
 
-module.exports = async function (req, res, next) {
+module.exports = async function (req, res) {
 	try {
-		const { email, password } = req.body;
+		const { email, password } = await req.body;
 		if (!email || !password) {
 			return res.status(400).json({ msg: 'Please enter all fields' });
 		}
