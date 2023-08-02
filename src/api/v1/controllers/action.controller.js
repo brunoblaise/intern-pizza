@@ -4,12 +4,12 @@ const sendMail = require('../../../services/gmail');
 
 module.exports = async function (req, res) {
 	try {
-		/* const role = req.user.role;
+		const role = req.user.role;
 		if (role !== 'admin') {
 			return res.status(400).json({ msg: 'You are not admin' });
 		}
 		
- */
+
 		const userId = req.user.id;
 		const id = req.params.id;
 		const { approved } = req.body;

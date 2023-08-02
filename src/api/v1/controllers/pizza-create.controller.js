@@ -1,5 +1,5 @@
 const Pizza = require('../../../db/models/pizza.model');
-module.exports = async function (req, res) {
+module.exports = async  (req, res) => {
 	try {
 		
 		const role = req.user.role;

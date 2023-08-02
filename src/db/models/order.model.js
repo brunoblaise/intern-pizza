@@ -6,7 +6,7 @@ const Order = db.define('order', {
 		primaryKey: true,
 		autoIncrement: true,
 	},
-	approved: { type: Sequelize.STRING, allowNull: false, defaultValue: 'Reject' },
+	approved: { type: Sequelize.STRING, allowNull: false, defaultValue: 'Pending' },
 	userId: { type: Sequelize.INTEGER, allowNull: false },
 	pizzaId: { type: Sequelize.INTEGER, allowNull: false },
 	quantity: { type: Sequelize.INTEGER, allowNull: false },

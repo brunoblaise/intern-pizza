@@ -1,11 +1,16 @@
 const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
 const app = express.Router();
+const { errors } = require('celebrate');
+app.use(express.json());
 
-const user = require('./src/api/v1/routers/user.route');
-const pizza = require('./src/api/v1/routers/pizza.route');
-const order = require('./src/api/v1/routers/order.route');
-app.use('/auth', user);
-app.use('/pizza', pizza);
-app.use('/order', order);
+app.use('/', require('./src/api/v1/routers/index'));
+
+//console.log('All models were synchronized successfully.');
+app.use(express.urlencoded({ extended: false }));
+app.use(cors());
+app.use(morgan('dev'));
+app.use(errors());
 
 module.exports = app;
