@@ -1,0 +1,305 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Pizza place where you can buy high quality pizza",
+		"title": "Pizza place",
+		"version": "1.0"
+	},
+	"server": [
+		{
+			"url": "http://localhost:5000/api/v1"
+		}
+	],
+	"tags": [
+		{
+			"name": "Order"
+		},
+
+		{
+			"name": "User"
+		},
+		{
+			"name": "Pizza"
+		}
+	],
+	"paths": {
+		"/auth/signup": {
+			"post": {
+				"tags": ["User"],
+				"summary": "Creating a user",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "User information",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name": { "type": "string", "example": "John doe" },
+								"email": { "type": "string", "format": "email", "example": "johndoe@gmail.com" },
+								"password": { "type": "string", "example": "123456" }
+							},
+							"required": ["emai", "password", "name"]
+						}
+					}
+				],
+				"responses": {
+					"201": { "description": "Created" },
+					"400": { "description": "Invalid Data" },
+					"500": { "description": "Internal server error" }
+				}
+			}
+		},
+
+		"/auth/login": {
+			"post": {
+				"tags": ["User"],
+				"summary": "Login in a user",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "User information",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"email": { "type": "string", "format": "email", "example": "johndoe@gmail.com" },
+								"password": { "type": "string", "example": "123456" }
+							},
+							"required": ["emai", "password"]
+						}
+					}
+				],
+				"responses": {
+					"200": { "description": "Ok" },
+					"400": { "description": "Invalid Data" },
+					"500": { "description": "Internal server error" }
+				}
+			}
+		},
+		"/pizza": {
+			"post": {
+				"tags": ["Pizza"],
+				"summary": "Pizza creation",
+				"security": {
+					"token": ["admin"]
+				},
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Pizza information",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name": { "type": "string", "example": "Pizza Margherita" },
+								"descritpion": {
+									"type": "string",
+									"example": "The Margherita is Pomodoro or San Marzano tomatoes, mozzarella di Buffala, extra virgin olive oil"
+								},
+								"price": { "type": "number", "example": "12" },
+								"available": { "type": "boolean", "example": true },
+								"image": {
+									"type": "string",
+									"example": "https://www.chefspencil.com/wp-content/uploads/Pizza-Margherita.jpg.webp"
+								}
+							},
+							"required": ["name", "price", "avaliable", "image", "description"]
+						}
+					},
+					{
+						"in": "header",
+						"name": "token",
+						"description": "header to get authorized",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"401": { "description": "Not authorized" },
+					"201": { "description": "Created" },
+					"400": { "description": "Invalid Data" },
+					"500": { "description": "Internal server error" }
+				}
+			}
+		},
+		"/pizza/view": {
+			"get": {
+				"tags": ["Pizza"],
+				"summary": "Getting pizza",
+				"produces": ["application/json"],
+				"responses": {
+					"200": { "description": "OK" },
+
+					"500": { "description": "Internal server error" }
+				}
+			}
+		},
+		"/order/view": {
+			"get": {
+				"tags": ["Order"],
+				"summary": "Getting Order by the user",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"in": "header",
+						"name": "token",
+						"description": "header to get authorized",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": { "description": "OK" },
+
+					"500": { "description": "Internal server error" }
+				}
+			}
+		},
+		"/order/{id}": {
+			"get": {
+				"tags": ["Order"],
+				"summary": "Getting Order by the user",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"description": "ID  the get order ",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "header",
+						"name": "token",
+						"description": "header to get authorized",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": { "description": "OK" },
+
+					"500": { "description": "Internal server error" }
+				}
+			}
+		},
+		"/order/delete/{id}": {
+			"delete": {
+				"tags": ["Order"],
+				"summary": "Delete order by ID",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"description": "ID of the order to delete",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"204": { "description": "No content" },
+					"404": { "description": "Not found" },
+					"500": { "description": "Internal server error" }
+				}
+			}
+		},
+		"/{id}": {
+			"put": {
+				"tags": ["Order"],
+				"summary": "Order edit",
+				"security": {
+					"token": ["admin"]
+				},
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Order information",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"approved": { "type": "string", "example": "Pending" }
+							},
+							"required": ["approved"]
+						}
+					},
+					{
+						"in": "header",
+						"name": "token",
+						"description": "header to get authorized",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"401": { "description": "Not authorized" },
+					"201": { "description": "Created" },
+					"400": { "description": "Invalid Data" },
+					"500": { "description": "Internal server error" }
+				}
+			}
+		},
+		"/place/{id}": {
+			"post": {
+				"tags": ["Order"],
+				"summary": "Order creation",
+				"security": {
+					"token": ["user"]
+				},
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Order information",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"quantity": { "type": "number", "example": 12 }
+							},
+							"required": ["quantity"]
+						}
+					},
+					{
+						"in": "header",
+						"name": "token",
+						"description": "header to get authorized",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"401": { "description": "Not authorized" },
+					"201": { "description": "Created" },
+					"400": { "description": "Invalid Data" },
+					"500": { "description": "Internal server error" }
+				}
+			}
+		}
+	},
+	"components": {
+		"securitySchemes": {
+			"token": {
+				"type": "http",
+				"scheme": "bearer",
+				"bearerFormat": "JWT"
+			}
+		}
+	}
+}
