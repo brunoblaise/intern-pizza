@@ -1,7 +1,7 @@
 const Pizza = require('../../../db/models/pizza.model');
 const timeStamp = require('../../../helpers/timeStamp');
 
-module.exports = async (req, res) => {
+module.exports = async (req, res, next) => {
 	try {
 		const role = req.user.role;
 		const user = process.env.USER;
@@ -25,5 +25,6 @@ module.exports = async (req, res) => {
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });
+		next(error);
 	}
 };

@@ -1,6 +1,6 @@
 const Order = require('../../../db/models/order.model');
 const { Pizza, User } = require('../../../db/models/associations');
-module.exports = async function (req, res) {
+module.exports = async function (req, res, next) {
 	try {
 		const userId = req.user.id;
 		if (!userId) {
@@ -14,5 +14,6 @@ module.exports = async function (req, res) {
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });
+		next(error);
 	}
 };

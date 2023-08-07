@@ -4,7 +4,7 @@ const jwtGenerator = require('../../../helpers/jwtGenerator');
 const User = require('../../../db/models/user.model');
 const timeStamp = require('../../../helpers/timeStamp');
 
-module.exports = async function (req, res) {
+module.exports = async function (req, res, next) {
 	try {
 		const { email, password } = await req.body;
 		if (!email || !password) {
@@ -19,5 +19,7 @@ module.exports = async function (req, res) {
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });
+
+		next(error);
 	}
 };

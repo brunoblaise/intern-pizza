@@ -5,7 +5,7 @@ const timeStamp = require('../../../helpers/timeStamp');
 
 require('dotenv').config();
 
-module.exports = async function (req, res) {
+module.exports = async function (req, res, next) {
 	try {
 		const role = req.user.role;
 		const user = process.env.USER;
@@ -47,5 +47,6 @@ module.exports = async function (req, res) {
 		);
 	} catch (error) {
 		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });
+		next(error);
 	}
 };

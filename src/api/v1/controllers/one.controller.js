@@ -3,7 +3,7 @@ const { Pizza, User } = require('../../../db/models/associations');
 const timeStamp = require('../../../helpers/timeStamp');
 
 //write a function to get one order
-module.exports = async function (req, res) {
+module.exports = async function (req, res, next) {
 	try {
 		const userId = req.user.id;
 		const id = req.params.id;
@@ -20,5 +20,6 @@ module.exports = async function (req, res) {
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });
+		next(error);
 	}
 };

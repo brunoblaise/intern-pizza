@@ -1,7 +1,7 @@
 const Order = require('../../../db/models/order.model');
 const timeStamp = require('../../../helpers/timeStamp');
 
-module.exports = async function (req, res) {
+module.exports = async function (req, res, next) {
 	try {
 		const userId = req.user.id;
 
@@ -12,9 +12,10 @@ module.exports = async function (req, res) {
 		const view = await Order.destroy({
 			where: { id, userId },
 		});
-		res.status(200).json({ STATUS: 200, data: view, time: timeStamp()});
+		res.status(200).json({ STATUS: 200, data: view, time: timeStamp() });
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });
+		next(error);
 	}
 };

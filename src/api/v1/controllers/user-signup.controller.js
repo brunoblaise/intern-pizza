@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const User = require('../../../db/models/user.model');
 const sendMail = require('../../../services/gmail');
 const timeStamp = require('../../../helpers/timeStamp');
-module.exports = async function (req, res) {
+module.exports = async function (req, res, next) {
 	try {
 		const { name, email, hash } = await req.body;
 		if (!name || !email || !hash) {
@@ -30,5 +30,6 @@ module.exports = async function (req, res) {
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });
+		next(error);
 	}
 };
