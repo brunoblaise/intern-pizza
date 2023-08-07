@@ -1,18 +1,24 @@
-const Order = require('../../../db/models/order.model');
+const Order = require('../../db/models/order.model.js');
 const { Pizza, User } = require('../../../db/models/associations');
+
+require('dotenv').config();
+const timeStamp = require('../../../helpers/timeStamp');
+
 module.exports = async function (req, res) {
 	try {
-		const userId = req.user.id;
-		if (!userId) {
-			return res.status(400).json({ msg: 'This order is not yours', STATUS: 400 });
+		const role = req.user.role;
+		const user = process.env.USER;
+		if (role !== user) {
+			return res
+				.status(400)
+				.json({ msg: 'You are not authorized to view all orders', STATUS: 400, time: timeStamp() });
 		}
+
 		const view = await Order.findAll({
-			where: { userId },
 			include: [Pizza, User],
 		});
 		res.status(200).json({ STATUS: 200, data: view, time: timeStamp() });
 	} catch (error) {
-		console.error(error.message);
 		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });
 	}
 };

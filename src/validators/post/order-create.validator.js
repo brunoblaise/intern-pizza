@@ -4,7 +4,7 @@ module.exports = celebrate({
 	[Segments.BODY]: {
 		quantity: Joi.number().integer().required(),
 	},
-    [Segments.PARAMS]:{
-        pizzaId: Joi.number().required()
-    }
+	[Segments.PARAMS]: {
+		id: Joi.number().required(),
+	},
 });

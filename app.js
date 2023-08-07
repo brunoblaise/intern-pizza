@@ -6,7 +6,9 @@ const { errors } = require('celebrate');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJson = require('./docs/swagger.json');
 app.use(express.json());
+const config = require('config');
 
+console.log(config.get('development.username'));
 app.use('/api/v1', require('./src/api/v1/routers/index'));
 
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerJson));

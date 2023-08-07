@@ -7,7 +7,7 @@ const db = require('./src/db/db.js');
 db.authenticate()
 	.then(() => console.log('Database connected...'))
 	.catch((err) => console.log('Error: ' + err));
-//d//b.sync({ force: true });
+db.sync({ alter: true });
 app.use('/', require('./app.js'));
 
 app.listen(PORT, () => {

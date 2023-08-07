@@ -1,16 +1,17 @@
 const Pizza = require('../../../db/models/pizza.model');
-module.exports = async  (req, res) => {
-	try {
-		
-		const role = req.user.role;
+const timeStamp = require('../../../helpers/timeStamp');
 
-		if (role !== 'admin') {
-			return res.status(401).json({ msg: 'Not authorized' });
+module.exports = async (req, res) => {
+	try {
+		const role = req.user.role;
+		const user = process.env.USER;
+		if (role !== user) {
+			return res.status(401).json({ msg: 'Not authorized', STATUS: 401, time: timeStamp() });
 		}
 
 		const { name, description, price, available, image } = req.body;
 		if (!name || !description || !price || !image) {
-			return res.status(400).json({ msg: 'Please enter all fields' });
+			return res.status(400).json({ msg: 'Please enter all fields', STATUS: 400, time: timeStamp() });
 		}
 
 		const pizza = await Pizza.create({
@@ -20,9 +21,9 @@ module.exports = async  (req, res) => {
 			available,
 			image,
 		});
-		res.status(201).json({ pizza });
+		res.status(201).json({ STATUS: 201, data: pizza, time: timeStamp() });
 	} catch (error) {
 		console.error(error.message);
-		res.status(500).send('Server error');
+		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });
 	}
 };

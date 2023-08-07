@@ -5,6 +5,7 @@ const OrderCreateValidator = require('../../../validators/post/order-create.vali
 const delet = require('../controllers/order-delete.controller');
 const order = require('../controllers/order-create.controller');
 const view = require('../controllers/order-view.controller');
+const viewAll = require('../controllers/order-views.controller');
 const one = require('../controllers/one.controller');
 const action = require('../controllers/action.controller');
 const auth = require('../middleware/auth');
@@ -13,6 +14,7 @@ const OrderDeleteValidator = require('../../../validators/delete/order-delete.va
 
 app.post('/place/:id', OrderCreateValidator, auth, order);
 app.get('/view/', auth, view);
+app.get('/view/all', auth, viewAll)
 app.delete('/delete/:id', OrderDeleteValidator, auth, delet);
 app.get('/:id', OneValidator, auth, one);
 app.put('/:id', OrderPutValidator, auth, action);
