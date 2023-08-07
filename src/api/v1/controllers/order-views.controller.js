@@ -1,4 +1,4 @@
-const Order = require('../../db/models/order.model.js');
+const Order = require('../../../db/models/order.model.js');
 const { Pizza, User } = require('../../../db/models/associations');
 
 require('dotenv').config();

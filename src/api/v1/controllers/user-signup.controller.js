@@ -9,7 +9,7 @@ module.exports = async function (req, res) {
 			return res.status(400).json({ msg: 'Please enter all fields', STATUS: 400, time: timeStamp() });
 		}
 		const user = await User.findOne({ where: { email } });
-		console.log('Users exist', user);
+
 		if (user) return res.status(400).json({ msg: 'User already exists', STATUS: 400, time: timeStamp() });
 
 		const salt = bcrypt.genSaltSync(10);
