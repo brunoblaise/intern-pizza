@@ -11,7 +11,8 @@
 		"password": "Bruno1234",
 		"database": "test",
 		"host": "localhost",
-		"dialect": "postgres"
+		"dialect": "postgres",
+		"seederStorage": "sequelize"
 	},
 	"production": {
 		"username": "root",
