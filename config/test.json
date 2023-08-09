@@ -1,0 +1,15 @@
+{
+	"username": "DB_USER",
+	"password": "DB_PASSWORD",
+	"host": "DB_HOST",
+	"dialect": "DB_DIALECT",
+	"development": {
+		"database": "DB_postgres"
+	},
+	"test": {
+		"database": "DB_postgres_test"
+	},
+	"production": {
+		"db_url": "DB_URL"
+	}
+}

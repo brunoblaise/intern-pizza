@@ -1,20 +1,31 @@
 const express = require('express');
 const app = express();
-const cors = require('cors');
-const morgan = require('morgan');
+const server = require('./app.js');
+
 const PORT = process.env.PORT || 5000;
 const db = require('./src/db/db.js');
-const morgan = require('morgan');
 
-db.authenticate()
-	.then(() => console.log('Database connected...'))
-	.catch((err) => console.log('Error: ' + err));
+//FIXME: the problem of test not getting the url
+//FIXME: gmail in services throwing error
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(cors());
-app.use(morgan('dev'));
+//FIXME: test not working
+//TODO: add more tests
+
+//NOTE:
+
+db.authenticate();
+
+app.get('/', async (req, res) => {
+	try {
+		res.status(200).json({ greeting: 'Hello there!' });
+	} catch (err) {
+		res.status(500).send(err);
+	}
+});
+app.use('/', server);
 
 app.listen(PORT, () => {
-	console.log(`App listening on PORT: ${PORT}`);
+	console.log(`Server is running on port ${PORT}.`);
 });
+
+module.exports = app;
