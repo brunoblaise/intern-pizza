@@ -14,7 +14,7 @@ const db = require('./src/db/db.js');
 //NOTE:
 
 db.authenticate();
-
+//db.sync();
 app.get('/', async (req, res) => {
 	try {
 		res.status(200).json({ greeting: 'Hello there!' });
