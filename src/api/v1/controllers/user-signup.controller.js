@@ -26,6 +26,7 @@ module.exports = async function (req, res, next) {
 			`Welcome  ${name} to the world best place place you can start by ordering a pizza`,
 		);
 		//const token = jwtGenerator(newUser.id, newUser.role);
+		//TODO: create a resuble function to pass for the staus data time and many others
 		res.status(201).json({ STATUS: 201, msg: 'User created', time: timeStamp(), data: newUser });
 	} catch (error) {
 		console.error(error.message);
