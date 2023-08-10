@@ -10,7 +10,7 @@
 		"seed": "npx sequelize-cli db:seed:all",
 		"seed:reset": "npx sequelize-cli db:seed:undo:all && npm run seed",
 		"reset": "npm run migrate:reset && npm run seed:reset",
-		"test": "cross-env NODE_ENV=test nyc --reporter=text mocha --testTimeout=100000 ",
+		"test": "cross-env NODE_ENV=test mocha --testTimeout=100000 ",
 		"pretest": "cross-env NODE_ENV=test npm run reset",
 		"coverage": "npm run pretest && jest --coverage && cat ./coverage/lcov.info | coveralls"
 	},
