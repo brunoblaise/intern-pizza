@@ -1,6 +1,8 @@
 language: node_js
 node_js:
-  - 'stable'
+  - "node" # latest stable Node.js release
+  - "lts/*" # latest LTS Node.js release
+  - "18" # specific version
 install: npm install
 services:
   - postgresql
