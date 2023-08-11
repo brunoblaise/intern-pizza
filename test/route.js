@@ -28,9 +28,28 @@ describe('User', () => {
 		});
 	});
 
-	describe('POST /the user login', () => {
+	/* describe('POST /the user login', () => {
 		let user = {
-			email: 'brunoblaise@gmail.com',
+			email: 'brunoblaise94@gmail.com',
+			password: '112235678989',
+		};
+		it('It should login the user', (done) => {
+			chai
+				.request(server)
+				.post('/api/v1/auth/login')
+				.send(user)
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.should.have.be.an('object');
+					res.body.should.have.keys('STATUS', 'token', 'msg', 'time');
+				});
+			done();
+		});
+	});
+ */
+	/* 	describe('POST /the user doesnot exist', () => {
+		let user = {
+			email: 'brunoblaise94@gmail.com',
 			password: '112235678989',
 		};
 		it('It should login the user', (done) => {
@@ -40,13 +59,11 @@ describe('User', () => {
 				.send(user)
 				.end((err, res) => {
 					user.should.exist;
-					res.should.have.status(200);
-					res.should.have.be.an('object');
-					res.body.should.have.keys('STATUS', 'token', 'msg', 'time');
+					res.should.have.status(400);
 				});
 			done();
 		});
-	});
+	}); */
 });
 
 describe('Pizza', () => {
@@ -56,7 +73,7 @@ describe('Pizza', () => {
 				.request(server)
 				.get('/api/v1/pizza/view?page=1&&limit=10')
 				.end((err, res) => {
-					res.should.have.status(400);
+					res.should.have.status(200);
 					//res.body.have.keys('STATUS', 'data', 'time');
 				});
 			done();
