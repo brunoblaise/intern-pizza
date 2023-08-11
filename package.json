@@ -10,8 +10,9 @@
 		"seed": "npx sequelize-cli db:seed:all",
 		"seed:reset": "npx sequelize-cli db:seed:undo:all && npm run seed",
 		"reset": "npm run migrate:reset && npm run seed:reset",
-		"test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha  --exit  ",
-		"pretest": "cross-env NODE_ENV=test npm run reset"
+		"test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha  --exit --require babel-register ./test ",
+		"pretest": "cross-env NODE_ENV=test npm run reset",
+	    "coverage": "nyc report --reporter=text-lcov | coveralls"
 	},
 	"author": "",
 	"license": "ISC",
@@ -20,6 +21,7 @@
 		"celebrate": "^15.0.1",
 		"config": "^3.3.9",
 		"cors": "^2.8.5",
+		"coveralls": "^3.1.1",
 		"cross-env": "^7.0.3",
 		"dotenv": "^16.3.1",
 		"express": "^4.18.2",
