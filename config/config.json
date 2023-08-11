@@ -1,24 +1,15 @@
 {
+	"username": "DB_USER",
+	"password": "DB_PASSWORD",
+	"host": "DB_HOST",
+	"dialect": "DB_DIALECT",
 	"development": {
-		"username": "postgres",
-		"password": "Bruno1234",
-		"database": "postgres",
-		"host": "localhost",
-		"dialect": "postgres"
+		"database": "DB_postgres"
 	},
 	"test": {
-		"username": "postgres",
-		"password": "Bruno1234",
-		"database": "test",
-		"host": "localhost",
-		"dialect": "postgres",
-		"seederStorage": "sequelize"
+		"database": "DB_postgres_test"
 	},
 	"production": {
-		"username": "root",
-		"password": null,
-		"database": "database_production",
-		"host": "127.0.0.1",
-		"dialect": "mysql"
+		"db_url": "DB_URL"
 	}
 }
