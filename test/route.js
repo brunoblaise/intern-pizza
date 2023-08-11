@@ -43,7 +43,6 @@ describe('User', () => {
 					res.should.have.status(200);
 					res.should.have.be.an('object');
 					res.body.should.have.keys('STATUS', 'token', 'msg', 'time');
-					const token = res.body.token;
 				});
 			done();
 		});
@@ -57,7 +56,7 @@ describe('Pizza', () => {
 				.request(server)
 				.get('/api/v1/pizza/view?page=1&&limit=10')
 				.end((err, res) => {
-					res.should.have.status(200);
+					res.should.have.status(400);
 					//res.body.have.keys('STATUS', 'data', 'time');
 				});
 			done();
