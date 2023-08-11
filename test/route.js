@@ -23,8 +23,8 @@ describe('User', () => {
 					res.should.have.be.an('object');
 					res.body.should.have.keys('STATUS', 'data', 'msg', 'time');
 					console.log(err);
-					done();
 				});
+			done();
 		});
 	});
 
@@ -44,9 +44,8 @@ describe('User', () => {
 					res.should.have.be.an('object');
 					res.body.should.have.keys('STATUS', 'token', 'msg', 'time');
 					const token = res.body.token;
-
-					done();
 				});
+			done();
 		});
 	});
 });
