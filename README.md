@@ -8,6 +8,6 @@
 
 
 * main is failing because of a conficlt between develop and main 
-* the code base has been changed to pass the test so for reference to the origin code base to this repo (https://github.com/brunoblaise/pizza-travisci)[origin]
+* the code base has been changed to pass the test so for reference to the origin code base to this repo [https://github.com/brunoblaise/pizza-travisci](origin)
 
 
