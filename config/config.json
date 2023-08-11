@@ -7,12 +7,17 @@
 		"dialect": "postgres"
 	},
 	"test": {
-		"username": "postgres",
-		"password": "Bruno1234",
+		"username": "noevone94",
+		"password": "QtSzmfe82MLX",
+		"host": "ep-round-brook-21911542-pooler.us-east-2.aws.neon.tech",
 		"database": "test",
-		"host": "localhost",
 		"dialect": "postgres",
-		"seederStorage": "sequelize"
+		"dialectOptions": {
+			"ssl": {
+				"require": true,
+				"rejectUnauthorized": false
+			}
+		}
 	},
 	"production": {
 		"username": "root",
