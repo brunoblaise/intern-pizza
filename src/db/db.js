@@ -5,7 +5,7 @@ const conf = `postgres:${config('password')}@localhost:5432`;
 
 const proConfig = config('production.db_url');
 
-const testConfig = `postgres://${conf}/${config('test.database')}`;
+const testConfig = config('production.db_url'); /* `postgres://${conf}/${config('test.database')}` */
 
 const devConfig = `postgres://${conf}/${config('development.database')}`;
 
@@ -19,7 +19,8 @@ const db = new Sequelize(
 	{
 		dialect: config('dialect'),
 		dialectOptions: {
-			ssl: process.env.NODE_ENV === 'production' ? true : false,
+			ssl: true,
+			/* process.env.NODE_ENV === 'production' ? true : false, */
 		},
 	},
 );
