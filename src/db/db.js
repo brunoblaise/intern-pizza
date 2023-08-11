@@ -16,7 +16,6 @@ const db = new Sequelize(
 		: process.env.NODE_ENV === 'test'
 		? testConfig
 		: devConfig, */
-
 	{
 		dialect: 'postgres',
 		dialectOptions: {
