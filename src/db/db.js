@@ -10,11 +10,12 @@ const testConfig = config('production.db_url'); /* `postgres://${conf}/${config(
 const devConfig = `postgres://${conf}/${config('development.database')}`;
 
 const db = new Sequelize(
-	process.env.NODE_ENV === 'production'
+	process.env.DB_URL,
+	/* 	process.env.NODE_ENV === 'production'
 		? proConfig
 		: process.env.NODE_ENV === 'test'
 		? testConfig
-		: devConfig,
+		: devConfig, */
 
 	{
 		dialect: 'postgres',
