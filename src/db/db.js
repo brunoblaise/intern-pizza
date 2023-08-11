@@ -17,7 +17,7 @@ const db = new Sequelize(
 		: devConfig,
 
 	{
-		dialect: config('dialect'),
+		dialect: 'postgres',
 		dialectOptions: {
 			ssl: true,
 			/* process.env.NODE_ENV === 'production' ? true : false, */
