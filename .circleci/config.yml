@@ -43,7 +43,7 @@ notify:
 workflows:
   build-and-test:
     jobs:
-      - test-node
+      - test
     # - deploy:
     #     requires:
     #       - 
