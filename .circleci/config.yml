@@ -8,6 +8,7 @@ jobs:
   test:
     # Install node dependencies and run tests
     executor: node/default
+    machine: true
     steps:
       - checkout
       - node/install-packages:
