@@ -1,0 +1,51 @@
+# This config was automatically generated from your source code
+# Stacks detected: deps:node:.
+version: 2.1
+orbs:
+  node: circleci/node@5
+  coveralls: coveralls/coveralls@1.0.6
+jobs:
+  test:
+    # Install node dependencies and run tests
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Run tests
+          command: npm test
+  deploy:
+    # This is an example deploy job, not actually used by the workflow
+    docker:
+      - image: cimg/base:stable
+    steps:
+      # Replace this with steps to deploy to users
+      - run:
+          name: deploy
+          command: '#e.g. ./deploy.sh'
+      - run:
+          name: coverage
+          command: npm run coverage
+      - coveralls/upload
+      - store_artifacts:
+            path: test-results
+            prefix: tests
+      - store_artifacts:
+            path: coverage
+            prefix: coverage
+      - store_test_results:
+            path: test_results
+      - run:
+            name: "what branch am I on"
+            commadn: echo ${CIRC:E_BRANCH}
+notify:
+  webhooks:
+    - url: https://coveralls.io/webhook?repo_token=${process.env.COVERALLS_REPO_TOKEN}                                  
+workflows:
+  build-and-test:
+    jobs:
+      - test-node
+    # - deploy:
+    #     requires:
+    #       - 

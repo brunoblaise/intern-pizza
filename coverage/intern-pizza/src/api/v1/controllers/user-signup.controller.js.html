@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">45% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/20</span>
+                <span class='fraction'>9/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/7</span>
+                <span class='fraction'>4/7</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.94% </span>
+                <span class="strong">47.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/19</span>
+                <span class='fraction'>9/19</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -111,24 +111,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -147,24 +147,24 @@ module.exports = async function (req, res, next) {
 		}
 		const user = await User.findOne({ where: { email } });
 &nbsp;
-		<span class="missing-if-branch" title="if path not taken" >I</span>if (user) <span class="cstat-no" title="statement not covered" >return res.status(400).json({ msg: 'User already exists', STATUS: 400, time: timeStamp() });</span>
+<span class="cstat-no" title="statement not covered" >		if (user) <span class="cstat-no" title="statement not covered" >return res.status(400).json({ msg: 'User already exists', STATUS: 400, time: timeStamp() });</span></span>
 &nbsp;
-		const salt = bcrypt.genSaltSync(10);
-		const password = bcrypt.hashSync(hash, salt);
+		const salt = <span class="cstat-no" title="statement not covered" >bcrypt.genSaltSync(10);</span>
+		const password = <span class="cstat-no" title="statement not covered" >bcrypt.hashSync(hash, salt);</span>
 &nbsp;
-		const newUser = await User.create({
+		const newUser = <span class="cstat-no" title="statement not covered" >await User.create({</span>
 			name,
 			email,
 			password,
 		});
-		sendMail(
+<span class="cstat-no" title="statement not covered" >		sendMail(</span>
 			email,
 			'Welcome to the to world best place place',
 			`Welcome  ${name} to the world best place place you can start by ordering a pizza`,
 		);
 		//const token = jwtGenerator(newUser.id, newUser.role);
 		//TODO: create a resuble function to pass for the staus data time and many others
-		res.status(201).json({ STATUS: 201, msg: 'User created', time: timeStamp(), data: newUser });
+<span class="cstat-no" title="statement not covered" >		res.status(201).json({ STATUS: 201, msg: 'User created', time: timeStamp(), data: newUser });</span>
 	} catch (error) {
 <span class="cstat-no" title="statement not covered" >		console.error(error.message);</span>
 <span class="cstat-no" title="statement not covered" >		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });</span>
@@ -178,7 +178,7 @@ module.exports = async function (req, res, next) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-11T14:16:21.358Z
+                at 2023-08-14T08:08:20.859Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>
