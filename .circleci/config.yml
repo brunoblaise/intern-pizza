@@ -37,9 +37,6 @@ jobs:
             prefix: coverage
       - store_test_results:
             path: test_results
-      - run:
-            name: "what branch am I on"
-            commadn: echo ${CIRCLE_BRANCH}
 notify:
   webhooks:
     - url: https://coveralls.io/webhook?repo_token=${process.env.COVERALLS_REPO_TOKEN}                                  
