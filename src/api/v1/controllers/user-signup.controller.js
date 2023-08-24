@@ -30,7 +30,7 @@ module.exports = async function (req, res, next) {
 		res.status(201).json({ STATUS: 201, msg: 'User created', time: timeStamp(), data: newUser });
 	} catch (error) {
 		console.error(error.message);
-		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });
+		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp(), problem: error});
 		next(error);
 	}
 };
