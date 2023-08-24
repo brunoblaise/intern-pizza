@@ -20,10 +20,16 @@
 		}
 	},
 	"production": {
-		"username": "root",
-		"password": null,
-		"database": "database_production",
-		"host": "127.0.0.1",
-		"dialect": "mysql"
+		"username": "noevone94",
+		"password": "QtSzmfe82MLX",
+		"host": "ep-round-brook-21911542-pooler.us-east-2.aws.neon.tech",
+		"database": "test",
+		"dialect": "postgres",
+		"dialectOptions": {
+			"ssl": {
+				"require": true,
+				"rejectUnauthorized": false
+			}
+		}
 	}
 }
