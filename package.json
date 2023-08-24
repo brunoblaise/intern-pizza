@@ -13,7 +13,7 @@
 		"test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text --reporter=html mocha test/*.js --timeout 10000 -c --require @babel/register --exit ",
 		"pretest": "cross-env NODE_ENV=test npm run reset",
 		"coverage": "nyc report --reporter=text-lcov | coveralls",
-		"start": "node server.js"
+		"start": "node cross-env NODE_ENV=test server.js"
 	},
 	"author": "",
 	"license": "ISC",
