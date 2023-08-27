@@ -15,7 +15,7 @@ module.exports = async function (req, res, next) {
 		const isMatch = await bcrypt.compare(password, user.password);
 		if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials', STATUS: 400, time: timeStamp() });
 		const token = jwtGenerator(user.id, user.role);
-		res.status(200).json({ STATUS: 200, token, msg: 'Logged in', time: timeStamp() });
+		res.status(200).json({ STATUS: 200, token, msg: 'Logged in', time: timeStamp(), DATA: user});
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp(), problem: error});
