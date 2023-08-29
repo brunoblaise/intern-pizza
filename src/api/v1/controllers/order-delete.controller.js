@@ -9,9 +9,7 @@ module.exports = async function (req, res, next) {
 
 		const {product} = req.body;
 		//console.log(product)
-		if (product.length === 0) {
-			return res.status(400).json({ msg: 'Please enter all fields', STATUS: 400, time: timeStamp() });
-		}
+		
 
 		const order = await Order.bulkCreate([...product]);
 		res.status(201).json({ STATUS: 201, data: order, time: timeStamp() });
