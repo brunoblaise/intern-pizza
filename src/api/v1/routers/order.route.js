@@ -12,7 +12,7 @@ const auth = require('../middleware/auth');
 const OneValidator = require('../../../validators/get/One.controller');
 const OrderDeleteValidator = require('../../../validators/delete/order-delete.validator');
 
-app.post('/place/:id', auth, order);
+app.post('/place/', auth, order);
 app.get('/view/', auth, view);
 app.get('/view/all', auth, viewAll)
 app.delete('/delete/:id', OrderDeleteValidator, auth, delet);
