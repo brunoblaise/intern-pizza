@@ -7,13 +7,8 @@ module.exports = async function (req, res, next) {
 		//const userId = req.user.id;
 		//const pizzaId = req.params.id;
 
-		const product = req.body;
-		//console.log(product)
-		if (product.length === 0) {
-			return res.status(400).json({ msg: 'Please enter all fields', STATUS: 400, time: timeStamp() });
-		}
-
-		const order = await Order.bulkCreate([...product]);
+	
+		const order = await Order.bulkCreate([... req.body.product]);
 		res.status(201).json({ STATUS: 201, data: order, time: timeStamp() });
 	} catch (error) {
 		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });
