@@ -8,6 +8,7 @@ module.exports = async function (req, res, next) {
 		//const pizzaId = req.params.id;
 
 		const product = req.body;
+		console.log(product)
 		if (!product) {
 			return res.status(400).json({ msg: 'Please enter all fields', STATUS: 400, time: timeStamp() });
 		}
