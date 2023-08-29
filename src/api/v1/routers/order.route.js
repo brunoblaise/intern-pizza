@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express.Router();
 const OrderPutValidator = require('../../../validators/put/order-put.validator');
-const OrderCreateValidator = require('../../../validators/post/order-create.validator');
+//const OrderCreateValidator = require('../../../validators/post/order-create.validator');
 const delet = require('../controllers/order-delete.controller');
 const order = require('../controllers/order-create.controller');
 const view = require('../controllers/order-view.controller');
@@ -12,7 +12,7 @@ const auth = require('../middleware/auth');
 const OneValidator = require('../../../validators/get/One.controller');
 const OrderDeleteValidator = require('../../../validators/delete/order-delete.validator');
 
-app.post('/place/:id', OrderCreateValidator, auth, order);
+app.post('/place', auth, order);
 app.get('/view/', auth, view);
 app.get('/view/all', auth, viewAll)
 app.delete('/delete/:id', OrderDeleteValidator, auth, delet);
