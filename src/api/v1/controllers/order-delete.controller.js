@@ -1,21 +1,21 @@
-//const { Pizza, User } = require('../../../db/models/associations');
 const Order = require('../../../db/models/order.model');
 const timeStamp = require('../../../helpers/timeStamp');
 
 module.exports = async function (req, res, next) {
 	try {
-		//const userId = req.user.id;
-		//const pizzaId = req.params.id;
+		const userId = req.user.id;
 
-		const {product} = req.body;
-		//console.log(product)
-		
-
-		const order = await Order.bulkCreate([...product]);
-		res.status(201).json({ STATUS: 201, data: order, time: timeStamp() });
+		const id = req.params.id;
+		if (!id) {
+			return res.status(400).json({ msg: 'Nothing here', STATUS: 400, time: timeStamp() });
+		}
+		const view = await Order.destroy({
+			where: { id, userId },
+		});
+		res.status(200).json({ STATUS: 200, data: view, time: timeStamp() });
 	} catch (error) {
+		console.error(error.message);
 		res.status(500).json({ msg: 'Server error', STATUS: 500, time: timeStamp() });
-
 		next(error);
 	}
 };
