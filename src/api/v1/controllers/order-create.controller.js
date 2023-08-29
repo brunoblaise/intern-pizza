@@ -7,7 +7,7 @@ module.exports = async function (req, res, next) {
 		//const userId = req.user.id;
 		//const pizzaId = req.params.id;
 
-		const product = req.body;
+		const product = req.body.product;
 		if (!product) {
 			return res.status(400).json({ msg: 'Please enter all fields', STATUS: 400, time: timeStamp() });
 		}
